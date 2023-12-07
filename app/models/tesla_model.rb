@@ -1,0 +1,2 @@
+class TeslaModel < ApplicationRecord
+end
