@@ -1,0 +1,2 @@
+class TeslaModelsController < ApplicationController
+end
