@@ -32,5 +32,10 @@ class Api::TeslaModelsController < ApplicationController
         render json: { errors: @tesla_model.errors.full_messages }, status: :unprocessable_entity
       end
     end
-  en
+  end
+  def destroy
+    @tesla_model = TeslaModel.find(params[:id])
+    @tesla_model.destroy
+    render json: { message: 'Tesla deleted successfully' }, status: :ok
+  end
 end
