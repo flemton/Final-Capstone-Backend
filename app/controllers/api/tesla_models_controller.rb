@@ -38,4 +38,11 @@ class Api::TeslaModelsController < ApplicationController
     @tesla_model.destroy
     render json: { message: 'Tesla deleted successfully' }, status: :ok
   end
+  private
+
+  def tesla_model_params
+    params.require(:tesla_models).permit(:name, :description, :deposit, :finance_fee,
+                                         :option_to_purchase_fee, :total_amount_payable,
+                                         :duration, :removed, :image)
+  end
 end
