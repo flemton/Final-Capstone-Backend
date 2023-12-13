@@ -33,9 +33,18 @@ class Api::ReservationsController < ApplicationController
     end
   end
 
-  def update; end
+  def update
+    if @reservation.update(reservation_params)
+      render json: { success: true, reservation: @reservation }
+    else
+      render json: { error: @reservation.errors.full_messages }, status: :unprocessable_entity
+    end
+  end
 
-  def destroy; end
+  def destroy
+    @reservation.destroy
+    render json: { success: true, message: 'Reservation was successfully deleted.' }
+  end
 
   private
 
