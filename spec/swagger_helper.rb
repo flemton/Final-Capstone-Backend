@@ -141,6 +141,50 @@ RSpec.configure do |config| # rubocop:disable Metrics/BlockLength
               }
             }
           }
+        },
+        '/api/users/current': {
+          get: {
+            summary: 'Retrieve the current user',
+            tags: ['Users'],
+            produces: ['application/json'],
+            security: [
+              {
+                BearerAuth: []
+              }
+            ],
+            responses: {
+              '200': {
+                description: 'Current user',
+                content: {
+                  'application/json': {
+                    schema: {
+                      type: :object,
+                      properties: {
+                        id: { type: :integer },
+                        username: { type: :string },
+                        email: { type: :string }
+                      },
+                      required: %w[id username email]
+                    }
+                  }
+                }
+              },
+              '401': {
+                description: 'Not logged in',
+                content: {
+                  'application/json': {
+                    schema: {
+                      type: :object,
+                      properties: {
+                        error: { type: :string }
+                      },
+                      required: ['error']
+                    }
+                  }
+                }
+              }
+            }
+          }
         }
       },
       servers: [
