@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 require 'rails_helper'
 
 RSpec.configure do |config| # rubocop:disable Metrics/BlockLength
@@ -21,7 +19,36 @@ RSpec.configure do |config| # rubocop:disable Metrics/BlockLength
         title: 'Tesla Test-Drive',
         version: 'v1'
       },
-      paths: {},
+      paths: {
+        '/api/users': {
+          get: {
+            summary: 'List all users',
+            tags: ['Users'],
+            produces: ['application/json'],
+            responses: {
+              '200': {
+                description: 'List of users',
+                content: {
+                  'application/json': {
+                    schema: {
+                      type: :array,
+                      items: {
+                        type: :object,
+                        properties: {
+                          id: { type: :integer },
+                          username: { type: :string },
+                          email: { type: :string }
+                        },
+                        required: %w[id username email]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
       servers: [
         {
           url: 'http://127.0.0.1:3000',
