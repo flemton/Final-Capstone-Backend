@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.configure do |config|
+RSpec.configure do |config| # rubocop:disable Metrics/BlockLength
   # Specify a root folder where Swagger JSON files are generated
   # NOTE: If you're using the rswag-api to serve API descriptions, you'll need
   # to ensure that it's configured to serve Swagger from the same folder
@@ -18,16 +18,16 @@ RSpec.configure do |config|
     'v1/swagger.yaml' => {
       openapi: '3.0.1',
       info: {
-        title: 'API V1',
+        title: 'Tesla Test-Drive',
         version: 'v1'
       },
       paths: {},
       servers: [
         {
-          url: 'https://{defaultHost}',
+          url: 'http://127.0.0.1:3000',
           variables: {
             defaultHost: {
-              default: 'www.example.com'
+              default: 'http://127.0.0.1:3000'
             }
           }
         }
