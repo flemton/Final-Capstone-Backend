@@ -104,6 +104,43 @@ RSpec.configure do |config| # rubocop:disable Metrics/BlockLength
               }
             }
           }
+        },
+        '/api/users/{id}': {
+          get: {
+            summary: 'Retrieve a user by ID',
+            tags: ['Users'],
+            produces: ['application/json'],
+            parameters: [
+              {
+                name: 'id',
+                in: 'path',
+                type: :integer,
+                description: 'ID of user',
+                required: true
+              }
+            ],
+            responses: {
+              '200': {
+                description: 'User found',
+                content: {
+                  'application/json': {
+                    schema: {
+                      type: :object,
+                      properties: {
+                        id: { type: :integer },
+                        username: { type: :string },
+                        email: { type: :string }
+                      },
+                      required: %w[id username email]
+                    }
+                  }
+                }
+              },
+              '404': {
+                description: 'User not found'
+              }
+            }
+          }
         }
       },
       servers: [

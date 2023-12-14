@@ -83,6 +83,37 @@ paths:
               - username
               - email
               - password
+  "/api/users/{id}":
+    get:
+      summary: Retrieve a user by ID
+      tags:
+      - Users
+      parameters:
+      - name: id
+        in: path
+        type: integer
+        description: ID of user
+        required: true
+      responses:
+        '200':
+          description: User found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  username:
+                    type: string
+                  email:
+                    type: string
+                required:
+                - id
+                - username
+                - email
+        '404':
+          description: User not found
 servers:
 - url: http://127.0.0.1:3000
   variables:
