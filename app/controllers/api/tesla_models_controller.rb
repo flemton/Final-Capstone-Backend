@@ -9,12 +9,14 @@ class Api::TeslaModelsController < ApplicationController
     end
     render json: tesla_models_json
   end
+
   def show
     @tesla_model = TeslaModel.find(params[:id])
     image_url = url_for(@tesla_model.image) if @tesla_model.image.attached?
     render json: { tesla_model: @tesla_model.attributes, image_url: }
   end
- def create
+
+  def create
     # Creating a new tesla instance from the provided parameters.
     @tesla_model = TeslaModel.new(tesla_model_params)
 
@@ -33,11 +35,13 @@ class Api::TeslaModelsController < ApplicationController
       end
     end
   end
+
   def destroy
     @tesla_model = TeslaModel.find(params[:id])
     @tesla_model.destroy
     render json: { message: 'Tesla deleted successfully' }, status: :ok
   end
+
   private
 
   def tesla_model_params
