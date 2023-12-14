@@ -388,6 +388,102 @@ paths:
                     type: string
                 required:
                 - message
+  "/api/users/{user_id}/reservations":
+    get:
+      summary: List all user reservations
+      tags:
+      - Reservations
+      parameters:
+      - name: user_id
+        in: path
+        type: integer
+        description: ID of the user
+        required: true
+      responses:
+        '200':
+          description: List of user reservations
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                    start_time:
+                      type: string
+                      format: date-time
+                    end_time:
+                      type: string
+                      format: date-time
+                    city:
+                      type: string
+                    tesla_model_id:
+                      type: integer
+                    user_id:
+                      type: integer
+                  required:
+                  - id
+                  - start_time
+                  - end_time
+                  - city
+                  - tesla_model_id
+                  - user_id
+    post:
+      summary: Create a new reservation
+      tags:
+      - Reservations
+      parameters:
+      - name: user_id
+        in: path
+        type: integer
+        description: ID of the user
+        required: true
+      responses:
+        '201':
+          description: Reservation created successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  reservation_id:
+                    type: integer
+                required:
+                - success
+                - reservation_id
+        '422':
+          description: Invalid reservation data
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                required:
+                - error
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                start_time:
+                  type: string
+                  format: date-time
+                end_time:
+                  type: string
+                  format: date-time
+                city:
+                  type: string
+              required:
+              - start_time
+              - end_time
+              - city
 servers:
 - url: http://127.0.0.1:3000
   variables:

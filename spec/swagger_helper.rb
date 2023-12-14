@@ -450,6 +450,65 @@ RSpec.configure do |config| # rubocop:disable Metrics/BlockLength
                 }
               }
             }
+          },
+          post: {
+            summary: 'Create a new reservation',
+            tags: ['Reservations'],
+            consumes: ['application/json'],
+            produces: ['application/json'],
+            parameters: [
+              {
+                name: 'user_id',
+                in: 'path',
+                type: :integer,
+                description: 'ID of the user',
+                required: true
+              },
+              {
+                in: :body,
+                name: :reservation,
+                schema: {
+                  type: :object,
+                  properties: {
+                    start_time: { type: :string, format: 'date-time' },
+                    end_time: { type: :string, format: 'date-time' },
+                    city: { type: :string }
+                  },
+                  required: %w[start_time end_time city]
+                }
+              }
+            ],
+            responses: {
+              '201': {
+                description: 'Reservation created successfully',
+                content: {
+                  'application/json': {
+                    schema: {
+                      type: :object,
+                      properties: {
+                        success: { type: :boolean },
+                        reservation_id: { type: :integer }
+                      },
+                      required: %w[success reservation_id]
+                    }
+                  }
+                }
+              },
+              '422': {
+                description: 'Invalid reservation data',
+                content: {
+                  'application/json': {
+                    schema: {
+                      type: :object,
+                      properties: {
+                        error: { type: :string }
+                      },
+                      required: ['error']
+                    }
+                  }
+                }
+              }
+            }
           }
         }
       },
