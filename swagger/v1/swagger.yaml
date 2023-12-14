@@ -29,6 +29,60 @@ paths:
                   - id
                   - username
                   - email
+    post:
+      summary: Create a new user
+      tags:
+      - Users
+      parameters: []
+      responses:
+        '201':
+          description: User created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  username:
+                    type: string
+                  email:
+                    type: string
+                required:
+                - id
+                - username
+                - email
+        '422':
+          description: Invalid user data
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: array
+                    items:
+                      type: string
+                required:
+                - error
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user:
+                  properties:
+                    username:
+                      type: string
+                    email:
+                      type: string
+                    password:
+                      type: string
+              required:
+              - username
+              - email
+              - password
 servers:
 - url: http://127.0.0.1:3000
   variables:

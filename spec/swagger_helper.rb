@@ -46,6 +46,63 @@ RSpec.configure do |config| # rubocop:disable Metrics/BlockLength
                 }
               }
             }
+          },
+          post: {
+            summary: 'Create a new user',
+            tags: ['Users'],
+            consumes: ['application/json'],
+            produces: ['application/json'],
+            parameters: [
+              {
+                in: :body,
+                name: :user,
+                schema: {
+                  type: :object,
+                  properties: {
+                    user: {
+                      properties: {
+                        username: { type: :string },
+                        email: { type: :string },
+                        password: { type: :string }
+                      }
+                    }
+                  },
+                  required: %w[username email password]
+                }
+              }
+            ],
+            responses: {
+              '201': {
+                description: 'User created',
+                content: {
+                  'application/json': {
+                    schema: {
+                      type: :object,
+                      properties: {
+                        id: { type: :integer },
+                        username: { type: :string },
+                        email: { type: :string }
+                      },
+                      required: %w[id username email]
+                    }
+                  }
+                }
+              },
+              '422': {
+                description: 'Invalid user data',
+                content: {
+                  'application/json': {
+                    schema: {
+                      type: :object,
+                      properties: {
+                        error: { type: :array, items: { type: :string } }
+                      },
+                      required: ['error']
+                    }
+                  }
+                }
+              }
+            }
           }
         }
       },
