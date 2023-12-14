@@ -510,6 +510,50 @@ RSpec.configure do |config| # rubocop:disable Metrics/BlockLength
               }
             }
           }
+        },
+        '/api/users/{user_id}/reservations/{id}': {
+          get: {
+            summary: 'Retrieve a reservation by ID',
+            tags: ['Reservations'],
+            produces: ['application/json'],
+            parameters: [
+              {
+                name: 'user_id',
+                in: 'path',
+                type: :integer,
+                description: 'ID of the user',
+                required: true
+              },
+              {
+                name: 'id',
+                in: 'path',
+                type: :integer,
+                description: 'ID of the reservation',
+                required: true
+              }
+            ],
+            responses: {
+              '200': {
+                description: 'Reservation details',
+                content: {
+                  'application/json': {
+                    schema: {
+                      type: :object,
+                      properties: {
+                        id: { type: :integer },
+                        start_time: { type: :string, format: 'date-time' },
+                        end_time: { type: :string, format: 'date-time' },
+                        city: { type: :string },
+                        tesla_model_id: { type: :integer },
+                        user_id: { type: :integer }
+                      },
+                      required: %w[id start_time end_time city tesla_model_id user_id]
+                    }
+                  }
+                }
+              }
+            }
+          }
         }
       },
       servers: [
