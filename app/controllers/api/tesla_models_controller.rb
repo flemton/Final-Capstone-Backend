@@ -14,7 +14,7 @@ class Api::TeslaModelsController < ApplicationController
     image_url = url_for(@tesla_model.image) if @tesla_model.image.attached?
     render json: { tesla_model: @tesla_model.attributes, image_url: }
   end
-\ def create
+ def create
     # Creating a new tesla instance from the provided parameters.
     @tesla_model = TeslaModel.new(tesla_model_params)
 
