@@ -333,6 +333,54 @@ RSpec.configure do |config| # rubocop:disable Metrics/BlockLength
               }
             }
           }
+        },
+        '/api/tesla_models/{id}': {
+          get: {
+            summary: 'Retrieve a Tesla model by ID',
+            tags: ['Tesla Models'],
+            produces: ['application/json'],
+            parameters: [
+              {
+                name: 'id',
+                in: 'path',
+                type: :integer,
+                description: 'ID of Tesla model',
+                required: true
+              }
+            ],
+            responses: {
+              '200': {
+                description: 'Tesla model found',
+                content: {
+                  'application/json': {
+                    schema: {
+                      type: :object,
+                      properties: {
+                        tesla_model: {
+                          type: :object,
+                          properties: {
+                            id: { type: :integer },
+                            name: { type: :string },
+                            description: { type: :string },
+                            deposit: { type: :integer },
+                            finance_fee: { type: :integer },
+                            option_to_purchase_fee: { type: :integer },
+                            total_amount_payable: { type: :integer },
+                            duration: { type: :integer },
+                            removed: { type: :boolean }
+                          },
+                          required: %w[id name description deposit finance_fee option_to_purchase_fee
+                                       total_amount_payable duration removed]
+                        },
+                        image_url: { type: :string, nullable: true }
+                      },
+                      required: %w[tesla_model image_url]
+                    }
+                  }
+                }
+              }
+            }
+          }
         }
       },
       servers: [
