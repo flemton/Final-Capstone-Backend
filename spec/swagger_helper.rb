@@ -275,6 +275,63 @@ RSpec.configure do |config| # rubocop:disable Metrics/BlockLength
                 }
               }
             }
+          },
+          post: {
+            summary: 'Create a new Tesla model',
+            tags: ['Tesla Models'],
+            consumes: ['application/json'],
+            produces: ['application/json'],
+            parameters: [
+              {
+                in: :body,
+                name: :tesla_model,
+                schema: {
+                  type: :object,
+                  properties: {
+                    name: { type: :string },
+                    description: { type: :string },
+                    deposit: { type: :integer },
+                    finance_fee: { type: :integer },
+                    option_to_purchase_fee: { type: :integer },
+                    total_amount_payable: { type: :integer },
+                    duration: { type: :integer },
+                    removed: { type: :boolean }
+                  },
+                  required: %w[name description deposit finance_fee option_to_purchase_fee
+                               total_amount_payable duration removed]
+                }
+              }
+            ],
+            responses: {
+              '201': {
+                description: 'Tesla model created successfully',
+                content: {
+                  'application/json': {
+                    schema: {
+                      type: :object,
+                      properties: {
+                        message: { type: :string }
+                      },
+                      required: ['message']
+                    }
+                  }
+                }
+              },
+              '422': {
+                description: 'Invalid Tesla model data',
+                content: {
+                  'application/json': {
+                    schema: {
+                      type: :object,
+                      properties: {
+                        errors: { type: :array, items: { type: :string } }
+                      },
+                      required: ['errors']
+                    }
+                  }
+                }
+              }
+            }
           }
         }
       },
