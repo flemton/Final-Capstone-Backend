@@ -380,6 +380,36 @@ RSpec.configure do |config| # rubocop:disable Metrics/BlockLength
                 }
               }
             }
+          },
+          delete: {
+            summary: 'Delete a Tesla model by ID',
+            tags: ['Tesla Models'],
+            produces: ['application/json'],
+            parameters: [
+              {
+                name: 'id',
+                in: 'path',
+                type: :integer,
+                description: 'ID of Tesla model',
+                required: true
+              }
+            ],
+            responses: {
+              '200': {
+                description: 'Tesla model deleted successfully',
+                content: {
+                  'application/json': {
+                    schema: {
+                      type: :object,
+                      properties: {
+                        message: { type: :string }
+                      },
+                      required: ['message']
+                    }
+                  }
+                }
+              }
+            }
           }
         }
       },
