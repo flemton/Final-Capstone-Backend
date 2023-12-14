@@ -185,6 +185,61 @@ RSpec.configure do |config| # rubocop:disable Metrics/BlockLength
               }
             }
           }
+        },
+        '/api/sessions': {
+          post: {
+            summary: 'Create a new session',
+            tags: ['Sessions'],
+            consumes: ['application/json'],
+            produces: ['application/json'],
+            parameters: [
+              {
+                in: :body,
+                name: :user,
+                schema: {
+                  type: :object,
+                  properties: {
+                    name: { type: :string },
+                    email: { type: :string },
+                    password: { type: :string }
+                  },
+                  required: %w[name email password]
+                }
+              }
+            ],
+            responses: {
+              '200': {
+                description: 'Session created',
+                content: {
+                  'application/json': {
+                    schema: {
+                      type: :object,
+                      properties: {
+                        success: { type: :boolean },
+                        user_id: { type: :integer },
+                        message: { type: :string }
+                      },
+                      required: %w[success user_id message]
+                    }
+                  }
+                }
+              },
+              '422': {
+                description: 'Invalid user data',
+                content: {
+                  'application/json': {
+                    schema: {
+                      type: :object,
+                      properties: {
+                        error: { type: :array, items: { type: :string } }
+                      },
+                      required: ['error']
+                    }
+                  }
+                }
+              }
+            }
+          }
         }
       },
       servers: [
