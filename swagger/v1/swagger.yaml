@@ -529,6 +529,87 @@ paths:
                 - city
                 - tesla_model_id
                 - user_id
+    put:
+      summary: Update a reservation by ID
+      tags:
+      - Reservations
+      parameters:
+      - name: user_id
+        in: path
+        type: integer
+        description: ID of the user
+        required: true
+      - name: id
+        in: path
+        type: integer
+        description: ID of the reservation
+        required: true
+      responses:
+        '200':
+          description: Reservation updated successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  reservation:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                      start_time:
+                        type: string
+                        format: date-time
+                      end_time:
+                        type: string
+                        format: date-time
+                      city:
+                        type: string
+                      tesla_model_id:
+                        type: integer
+                      user_id:
+                        type: integer
+                    required:
+                    - id
+                    - start_time
+                    - end_time
+                    - city
+                    - tesla_model_id
+                    - user_id
+                required:
+                - success
+                - reservation
+        '422':
+          description: Invalid reservation data
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                required:
+                - error
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                start_time:
+                  type: string
+                  format: date-time
+                end_time:
+                  type: string
+                  format: date-time
+                city:
+                  type: string
+              required:
+              - start_time
+              - end_time
+              - city
 servers:
 - url: http://127.0.0.1:3000
   variables:

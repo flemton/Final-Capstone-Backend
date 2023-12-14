@@ -553,6 +553,83 @@ RSpec.configure do |config| # rubocop:disable Metrics/BlockLength
                 }
               }
             }
+          },
+          put: {
+            summary: 'Update a reservation by ID',
+            tags: ['Reservations'],
+            consumes: ['application/json'],
+            produces: ['application/json'],
+            parameters: [
+              {
+                name: 'user_id',
+                in: 'path',
+                type: :integer,
+                description: 'ID of the user',
+                required: true
+              },
+              {
+                name: 'id',
+                in: 'path',
+                type: :integer,
+                description: 'ID of the reservation',
+                required: true
+              },
+              {
+                in: :body,
+                name: :reservation,
+                schema: {
+                  type: :object,
+                  properties: {
+                    start_time: { type: :string, format: 'date-time' },
+                    end_time: { type: :string, format: 'date-time' },
+                    city: { type: :string }
+                  },
+                  required: %w[start_time end_time city]
+                }
+              }
+            ],
+            responses: {
+              '200': {
+                description: 'Reservation updated successfully',
+                content: {
+                  'application/json': {
+                    schema: {
+                      type: :object,
+                      properties: {
+                        success: { type: :boolean },
+                        reservation: {
+                          type: :object,
+                          properties: {
+                            id: { type: :integer },
+                            start_time: { type: :string, format: 'date-time' },
+                            end_time: { type: :string, format: 'date-time' },
+                            city: { type: :string },
+                            tesla_model_id: { type: :integer },
+                            user_id: { type: :integer }
+                          },
+                          required: %w[id start_time end_time city tesla_model_id user_id]
+                        }
+                      },
+                      required: %w[success reservation]
+                    }
+                  }
+                }
+              },
+              '422': {
+                description: 'Invalid reservation data',
+                content: {
+                  'application/json': {
+                    schema: {
+                      type: :object,
+                      properties: {
+                        error: { type: :string }
+                      },
+                      required: ['error']
+                    }
+                  }
+                }
+              }
+            }
           }
         }
       },
