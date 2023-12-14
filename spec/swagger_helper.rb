@@ -240,6 +240,42 @@ RSpec.configure do |config| # rubocop:disable Metrics/BlockLength
               }
             }
           }
+        },
+        '/api/tesla_models': {
+          get: {
+            summary: 'List all Tesla models',
+            tags: ['Tesla Models'],
+            produces: ['application/json'],
+            responses: {
+              '200': {
+                description: 'List of Tesla models',
+                content: {
+                  'application/json': {
+                    schema: {
+                      type: :array,
+                      items: {
+                        type: :object,
+                        properties: {
+                          id: { type: :integer },
+                          name: { type: :string },
+                          description: { type: :string },
+                          deposit: { type: :integer },
+                          finance_fee: { type: :integer },
+                          option_to_purchase_fee: { type: :integer },
+                          total_amount_payable: { type: :integer },
+                          duration: { type: :integer },
+                          removed: { type: :boolean },
+                          image_url: { type: :string, nullable: true }
+                        },
+                        required: %w[id name description deposit finance_fee option_to_purchase_fee
+                                     total_amount_payable duration removed]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
         }
       },
       servers: [
