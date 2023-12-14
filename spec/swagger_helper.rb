@@ -630,6 +630,44 @@ RSpec.configure do |config| # rubocop:disable Metrics/BlockLength
                 }
               }
             }
+          },
+          delete: {
+            summary: 'Delete a reservation by ID',
+            tags: ['Reservations'],
+            produces: ['application/json'],
+            parameters: [
+              {
+                name: 'user_id',
+                in: 'path',
+                type: :integer,
+                description: 'ID of the user',
+                required: true
+              },
+              {
+                name: 'id',
+                in: 'path',
+                type: :integer,
+                description: 'ID of the reservation',
+                required: true
+              }
+            ],
+            responses: {
+              '200': {
+                description: 'Reservation deleted successfully',
+                content: {
+                  'application/json': {
+                    schema: {
+                      type: :object,
+                      properties: {
+                        success: { type: :boolean },
+                        message: { type: :string }
+                      },
+                      required: %w[success message]
+                    }
+                  }
+                }
+              }
+            }
           }
         }
       },
