@@ -56,3 +56,5 @@ gem 'rswag-api'
 gem 'rswag-ui'
 
 gem 'rspec-rails'
+
+gem 'image_processing', '~> 1.2'
