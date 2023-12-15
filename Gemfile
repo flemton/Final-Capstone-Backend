@@ -50,6 +50,7 @@ gem 'devise'
 
 gem 'rubocop', '>= 1.0', '< 2.0'
 
+gem 'rack-cors'
 gem 'rswag'
 gem 'rswag-api'
 gem 'rswag-ui'
