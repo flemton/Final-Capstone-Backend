@@ -193,12 +193,12 @@ paths:
             schema:
               type: object
               properties:
-                name:
-                  type: string
-                email:
-                  type: string
-                password:
-                  type: string
+                user:
+                  properties:
+                    email:
+                      type: string
+                    password:
+                      type: string
               required:
               - name
               - email
@@ -301,6 +301,41 @@ paths:
                   type: integer
                 removed:
                   type: boolean
+                image:
+                  type: string
+                  format: binary
+              required:
+              - name
+              - description
+              - deposit
+              - finance_fee
+              - option_to_purchase_fee
+              - total_amount_payable
+              - duration
+              - removed
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                description:
+                  type: string
+                deposit:
+                  type: integer
+                finance_fee:
+                  type: integer
+                option_to_purchase_fee:
+                  type: integer
+                total_amount_payable:
+                  type: integer
+                duration:
+                  type: integer
+                removed:
+                  type: boolean
+                image:
+                  type: string
+                  format: binary
               required:
               - name
               - description

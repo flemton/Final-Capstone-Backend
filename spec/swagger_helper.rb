@@ -282,7 +282,7 @@ RSpec.configure do |config| # rubocop:disable Metrics/BlockLength
           post: {
             summary: 'Create a new Tesla model',
             tags: ['Tesla Models'],
-            consumes: ['application/json'],
+            consumes: ['application/json', 'multipart/form-data'],
             produces: ['application/json'],
             parameters: [
               {
@@ -298,11 +298,18 @@ RSpec.configure do |config| # rubocop:disable Metrics/BlockLength
                     option_to_purchase_fee: { type: :integer },
                     total_amount_payable: { type: :integer },
                     duration: { type: :integer },
-                    removed: { type: :boolean }
+                    removed: { type: :boolean },
+                    image: { type: :string, format: :binary }
                   },
-                  required: %w[name description deposit finance_fee option_to_purchase_fee
-                               total_amount_payable duration removed]
+                  required: %w[name description deposit finance_fee
+                               option_to_purchase_fee total_amount_payable duration removed]
                 }
+              },
+              {
+                in: :formData,
+                name: :image,
+                type: :file,
+                description: 'Image file'
               }
             ],
             responses: {
