@@ -199,9 +199,12 @@ RSpec.configure do |config| # rubocop:disable Metrics/BlockLength
                 schema: {
                   type: :object,
                   properties: {
-                    name: { type: :string },
-                    email: { type: :string },
-                    password: { type: :string }
+                    user: {
+                      properties: {
+                        email: { type: :string },
+                        password: { type: :string }
+                      }
+                    }
                   },
                   required: %w[name email password]
                 }
