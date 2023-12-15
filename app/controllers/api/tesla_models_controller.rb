@@ -45,8 +45,9 @@ class Api::TeslaModelsController < ApplicationController
   private
 
   def tesla_model_params
-    params.require(:tesla_models).permit(:name, :description, :deposit, :finance_fee,
-                                         :option_to_purchase_fee, :total_amount_payable,
-                                         :duration, :removed, :image)
+    params.require(:tesla_model).permit(
+      :name, :description, :deposit, :finance_fee,
+      :option_to_purchase_fee, :total_amount_payable, :duration, :removed, :image
+    )
   end
 end
