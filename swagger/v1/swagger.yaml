@@ -470,10 +470,10 @@ paths:
       tags:
       - Reservations
       parameters:
-      - name: user_id
+      - name: tesla_model_id
         in: path
         type: integer
-        description: ID of the user
+        description: ID of the Tesla model
         required: true
       responses:
         '201':
@@ -507,17 +507,19 @@ paths:
             schema:
               type: object
               properties:
-                start_time:
+                start_date:
                   type: string
                   format: date-time
-                end_time:
+                end_date:
                   type: string
                   format: date-time
                 city:
                   type: string
+                user_id:
+                  type: integer
               required:
-              - start_time
-              - end_time
+              - start_date
+              - end_date
               - city
   "/api/users/{user_id}/reservations/{id}":
     get:
