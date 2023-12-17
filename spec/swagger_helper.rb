@@ -36,10 +36,9 @@ RSpec.configure do |config| # rubocop:disable Metrics/BlockLength
                         type: :object,
                         properties: {
                           id: { type: :integer },
-                          username: { type: :string },
-                          email: { type: :string }
+                          username: { type: :string }
                         },
-                        required: %w[id username email]
+                        required: %w[id username]
                       }
                     }
                   }
@@ -61,13 +60,11 @@ RSpec.configure do |config| # rubocop:disable Metrics/BlockLength
                   properties: {
                     user: {
                       properties: {
-                        username: { type: :string },
-                        email: { type: :string },
-                        password: { type: :string }
+                        username: { type: :string }
                       }
                     }
                   },
-                  required: %w[username email password]
+                  required: %w[username]
                 }
               }
             ],
@@ -80,10 +77,9 @@ RSpec.configure do |config| # rubocop:disable Metrics/BlockLength
                       type: :object,
                       properties: {
                         id: { type: :integer },
-                        username: { type: :string },
-                        email: { type: :string }
+                        username: { type: :string }
                       },
-                      required: %w[id username email]
+                      required: %w[id username]
                     }
                   }
                 }
@@ -128,10 +124,9 @@ RSpec.configure do |config| # rubocop:disable Metrics/BlockLength
                       type: :object,
                       properties: {
                         id: { type: :integer },
-                        username: { type: :string },
-                        email: { type: :string }
+                        username: { type: :string }
                       },
-                      required: %w[id username email]
+                      required: %w[id username]
                     }
                   }
                 }
@@ -161,10 +156,9 @@ RSpec.configure do |config| # rubocop:disable Metrics/BlockLength
                       type: :object,
                       properties: {
                         id: { type: :integer },
-                        username: { type: :string },
-                        email: { type: :string }
+                        username: { type: :string }
                       },
-                      required: %w[id username email]
+                      required: %w[id username]
                     }
                   }
                 }
@@ -201,12 +195,11 @@ RSpec.configure do |config| # rubocop:disable Metrics/BlockLength
                   properties: {
                     user: {
                       properties: {
-                        email: { type: :string },
-                        password: { type: :string }
+                        username: { type: :string }
                       }
                     }
                   },
-                  required: %w[name email password]
+                  required: %w[username]
                 }
               }
             ],
@@ -614,13 +607,13 @@ RSpec.configure do |config| # rubocop:disable Metrics/BlockLength
                           type: :object,
                           properties: {
                             id: { type: :integer },
-                            start_time: { type: :string, format: 'date-time' },
-                            end_time: { type: :string, format: 'date-time' },
+                            start_date: { type: :string, format: 'date-time' },
+                            end_date: { type: :string, format: 'date-time' },
                             city: { type: :string },
                             tesla_model_id: { type: :integer },
                             user_id: { type: :integer }
                           },
-                          required: %w[id start_time end_time city tesla_model_id user_id]
+                          required: %w[id start_date end_date city tesla_model_id user_id]
                         }
                       },
                       required: %w[success reservation]

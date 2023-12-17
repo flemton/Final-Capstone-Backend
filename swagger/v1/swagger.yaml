@@ -23,12 +23,9 @@ paths:
                       type: integer
                     username:
                       type: string
-                    email:
-                      type: string
                   required:
                   - id
                   - username
-                  - email
     post:
       summary: Create a new user
       tags:
@@ -46,12 +43,9 @@ paths:
                     type: integer
                   username:
                     type: string
-                  email:
-                    type: string
                 required:
                 - id
                 - username
-                - email
         '422':
           description: Invalid user data
           content:
@@ -75,14 +69,8 @@ paths:
                   properties:
                     username:
                       type: string
-                    email:
-                      type: string
-                    password:
-                      type: string
               required:
               - username
-              - email
-              - password
   "/api/users/{id}":
     get:
       summary: Retrieve a user by ID
@@ -106,12 +94,9 @@ paths:
                     type: integer
                   username:
                     type: string
-                  email:
-                    type: string
                 required:
                 - id
                 - username
-                - email
         '404':
           description: User not found
   "/api/users/current":
@@ -133,12 +118,9 @@ paths:
                     type: integer
                   username:
                     type: string
-                  email:
-                    type: string
                 required:
                 - id
                 - username
-                - email
         '401':
           description: Not logged in
           content:
@@ -195,14 +177,10 @@ paths:
               properties:
                 user:
                   properties:
-                    email:
-                      type: string
-                    password:
+                    username:
                       type: string
               required:
-              - name
-              - email
-              - password
+              - username
   "/api/tesla_models":
     get:
       summary: List all Tesla models
@@ -423,50 +401,9 @@ paths:
                     type: string
                 required:
                 - message
-  "/api/users/{user_id}/reservations":
-    get:
-      summary: List all user reservations
-      tags:
-      - Reservations
-      parameters:
-      - name: user_id
-        in: path
-        type: integer
-        description: ID of the user
-        required: true
-      responses:
-        '200':
-          description: List of user reservations
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    id:
-                      type: integer
-                    start_time:
-                      type: string
-                      format: date-time
-                    end_time:
-                      type: string
-                      format: date-time
-                    city:
-                      type: string
-                    tesla_model_id:
-                      type: integer
-                    user_id:
-                      type: integer
-                  required:
-                  - id
-                  - start_time
-                  - end_time
-                  - city
-                  - tesla_model_id
-                  - user_id
+  "/api/tesla_models/{id}/reservations":
     post:
-      summary: Create a new reservation
+      summary: Create a new tesla reservation for a user
       tags:
       - Reservations
       parameters:
@@ -521,6 +458,48 @@ paths:
               - start_date
               - end_date
               - city
+  "/api/users/{user_id}/reservations":
+    get:
+      summary: List all user reservations
+      tags:
+      - Reservations
+      parameters:
+      - name: user_id
+        in: path
+        type: integer
+        description: ID of the user
+        required: true
+      responses:
+        '200':
+          description: List of user reservations
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                    start_time:
+                      type: string
+                      format: date-time
+                    end_time:
+                      type: string
+                      format: date-time
+                    city:
+                      type: string
+                    tesla_model_id:
+                      type: integer
+                    user_id:
+                      type: integer
+                  required:
+                  - id
+                  - start_time
+                  - end_time
+                  - city
+                  - tesla_model_id
+                  - user_id
   "/api/users/{user_id}/reservations/{id}":
     get:
       summary: Retrieve a reservation by ID
@@ -596,10 +575,10 @@ paths:
                     properties:
                       id:
                         type: integer
-                      start_time:
+                      start_date:
                         type: string
                         format: date-time
-                      end_time:
+                      end_date:
                         type: string
                         format: date-time
                       city:
@@ -610,8 +589,8 @@ paths:
                         type: integer
                     required:
                     - id
-                    - start_time
-                    - end_time
+                    - start_date
+                    - end_date
                     - city
                     - tesla_model_id
                     - user_id
