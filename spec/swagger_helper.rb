@@ -506,7 +506,7 @@ RSpec.configure do |config| # rubocop:disable Metrics/BlockLength
                 }
               }
             }
-          },
+          }
         },
         '/api/users/{user_id}/reservations/{id}': {
           get: {
