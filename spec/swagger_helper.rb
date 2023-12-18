@@ -477,20 +477,11 @@ RSpec.configure do |config| # rubocop:disable Metrics/BlockLength
             }
           }
         },
-        '/api/users/{user_id}/reservations': {
+        '/api/user_reservations': {
           get: {
             summary: 'List all user reservations',
-            tags: ['Reservations'],
+            tags: ['Users'],
             produces: ['application/json'],
-            parameters: [
-              {
-                name: 'user_id',
-                in: 'path',
-                type: :integer,
-                description: 'ID of the user',
-                required: true
-              }
-            ],
             responses: {
               '200': {
                 description: 'List of user reservations',
@@ -515,7 +506,7 @@ RSpec.configure do |config| # rubocop:disable Metrics/BlockLength
                 }
               }
             }
-          }
+          },
         },
         '/api/users/{user_id}/reservations/{id}': {
           get: {
