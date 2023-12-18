@@ -36,10 +36,9 @@ RSpec.configure do |config| # rubocop:disable Metrics/BlockLength
                         type: :object,
                         properties: {
                           id: { type: :integer },
-                          username: { type: :string },
-                          email: { type: :string }
+                          username: { type: :string }
                         },
-                        required: %w[id username email]
+                        required: %w[id username]
                       }
                     }
                   }
@@ -61,13 +60,11 @@ RSpec.configure do |config| # rubocop:disable Metrics/BlockLength
                   properties: {
                     user: {
                       properties: {
-                        username: { type: :string },
-                        email: { type: :string },
-                        password: { type: :string }
+                        username: { type: :string }
                       }
                     }
                   },
-                  required: %w[username email password]
+                  required: %w[username]
                 }
               }
             ],
@@ -80,10 +77,9 @@ RSpec.configure do |config| # rubocop:disable Metrics/BlockLength
                       type: :object,
                       properties: {
                         id: { type: :integer },
-                        username: { type: :string },
-                        email: { type: :string }
+                        username: { type: :string }
                       },
-                      required: %w[id username email]
+                      required: %w[id username]
                     }
                   }
                 }
@@ -128,10 +124,9 @@ RSpec.configure do |config| # rubocop:disable Metrics/BlockLength
                       type: :object,
                       properties: {
                         id: { type: :integer },
-                        username: { type: :string },
-                        email: { type: :string }
+                        username: { type: :string }
                       },
-                      required: %w[id username email]
+                      required: %w[id username]
                     }
                   }
                 }
@@ -161,10 +156,9 @@ RSpec.configure do |config| # rubocop:disable Metrics/BlockLength
                       type: :object,
                       properties: {
                         id: { type: :integer },
-                        username: { type: :string },
-                        email: { type: :string }
+                        username: { type: :string }
                       },
-                      required: %w[id username email]
+                      required: %w[id username]
                     }
                   }
                 }
@@ -201,12 +195,11 @@ RSpec.configure do |config| # rubocop:disable Metrics/BlockLength
                   properties: {
                     user: {
                       properties: {
-                        email: { type: :string },
-                        password: { type: :string }
+                        username: { type: :string }
                       }
                     }
                   },
-                  required: %w[name email password]
+                  required: %w[username]
                 }
               }
             ],
@@ -422,6 +415,68 @@ RSpec.configure do |config| # rubocop:disable Metrics/BlockLength
             }
           }
         },
+        '/api/tesla_models/{id}/reservations': {
+          post: {
+            summary: 'Create a new tesla reservation for a user',
+            tags: ['Reservations'],
+            consumes: ['application/json'],
+            produces: ['application/json'],
+            parameters: [
+              {
+                name: 'tesla_model_id',
+                in: 'path',
+                type: :integer,
+                description: 'ID of the Tesla model',
+                required: true
+              },
+              {
+                in: :body,
+                name: :reservation,
+                schema: {
+                  type: :object,
+                  properties: {
+                    start_date: { type: :string, format: 'date-time' },
+                    end_date: { type: :string, format: 'date-time' },
+                    city: { type: :string },
+                    user_id: { type: :integer }
+                  },
+                  required: %w[start_date end_date city]
+                }
+              }
+            ],
+            responses: {
+              '201': {
+                description: 'Reservation created successfully',
+                content: {
+                  'application/json': {
+                    schema: {
+                      type: :object,
+                      properties: {
+                        success: { type: :boolean },
+                        reservation_id: { type: :integer }
+                      },
+                      required: %w[success reservation_id]
+                    }
+                  }
+                }
+              },
+              '422': {
+                description: 'Invalid reservation data',
+                content: {
+                  'application/json': {
+                    schema: {
+                      type: :object,
+                      properties: {
+                        error: { type: :string }
+                      },
+                      required: ['error']
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
         '/api/users/{user_id}/reservations': {
           get: {
             summary: 'List all user reservations',
@@ -455,65 +510,6 @@ RSpec.configure do |config| # rubocop:disable Metrics/BlockLength
                         },
                         required: %w[id start_time end_time city tesla_model_id user_id]
                       }
-                    }
-                  }
-                }
-              }
-            }
-          },
-          post: {
-            summary: 'Create a new reservation',
-            tags: ['Reservations'],
-            consumes: ['application/json'],
-            produces: ['application/json'],
-            parameters: [
-              {
-                name: 'user_id',
-                in: 'path',
-                type: :integer,
-                description: 'ID of the user',
-                required: true
-              },
-              {
-                in: :body,
-                name: :reservation,
-                schema: {
-                  type: :object,
-                  properties: {
-                    start_time: { type: :string, format: 'date-time' },
-                    end_time: { type: :string, format: 'date-time' },
-                    city: { type: :string }
-                  },
-                  required: %w[start_time end_time city]
-                }
-              }
-            ],
-            responses: {
-              '201': {
-                description: 'Reservation created successfully',
-                content: {
-                  'application/json': {
-                    schema: {
-                      type: :object,
-                      properties: {
-                        success: { type: :boolean },
-                        reservation_id: { type: :integer }
-                      },
-                      required: %w[success reservation_id]
-                    }
-                  }
-                }
-              },
-              '422': {
-                description: 'Invalid reservation data',
-                content: {
-                  'application/json': {
-                    schema: {
-                      type: :object,
-                      properties: {
-                        error: { type: :string }
-                      },
-                      required: ['error']
                     }
                   }
                 }
@@ -611,13 +607,13 @@ RSpec.configure do |config| # rubocop:disable Metrics/BlockLength
                           type: :object,
                           properties: {
                             id: { type: :integer },
-                            start_time: { type: :string, format: 'date-time' },
-                            end_time: { type: :string, format: 'date-time' },
+                            start_date: { type: :string, format: 'date-time' },
+                            end_date: { type: :string, format: 'date-time' },
                             city: { type: :string },
                             tesla_model_id: { type: :integer },
                             user_id: { type: :integer }
                           },
-                          required: %w[id start_time end_time city tesla_model_id user_id]
+                          required: %w[id start_date end_date city tesla_model_id user_id]
                         }
                       },
                       required: %w[success reservation]
