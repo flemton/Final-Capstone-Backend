@@ -458,17 +458,11 @@ paths:
               - start_date
               - end_date
               - city
-  "/api/users/{user_id}/reservations":
+  "/api/user_reservations":
     get:
       summary: List all user reservations
       tags:
-      - Reservations
-      parameters:
-      - name: user_id
-        in: path
-        type: integer
-        description: ID of the user
-        required: true
+      - Users
       responses:
         '200':
           description: List of user reservations

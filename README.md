@@ -1,10 +1,10 @@
 <div align="center">
 
-![EED](front.png)
+![Swagger Doc](spec.png)
 
 <a name="readme-top"></a>
 
-  <h1><b>Tesla Test Drive</b></h1>
+  <h1><b>Tesla Test Drive API</b></h1>
 
 </div>
 
@@ -32,9 +32,9 @@
     - [🙏 Acknowledgments ](#-acknowledgments-)
     - [❓ FAQ (OPTIONAL) ](#-faq-optional-)
     - [📝 License ](#-license-)
-# 📖 Tesla Test Drive Front End <a name="about-project"></a>
+# 📖 Tesla Test Drive Back End <a name="about-project"></a>
 
-**Tesla Test Drive Front End** The front-end component of this final capstone project is developed using React.js, designed to provide an intuitive user interface for managing reservations or appointments for test drives of teslas. It communicates with the back-end API built with Ruby on Rails.
+**Tesla Test Drive Back End** The back-end component of this final capstone project is developed using back-end API is built with Ruby on Rails, it connects to the front-end to provide an intuitive user interface for managing reservations or appointments for test drives of teslas, The Documentation is done with Swagger UI.
 
 ## 🛠 ER Diagram <a name="er-diagram"></a>
 
@@ -65,13 +65,28 @@ This project was completed by three Team members:
 <p align="right"><a href="#readme-top">back to top</a></p>
 
 ## 🛠 Built With <a name="built-with"></a>
-
+- Ruby on Rails
+- PostgreSQL
 ### Tech Stack <a name="tech-stack"></a>
 
 <details>
-  <summary>Technologies</summary>
+  <summary>Client</summary>
   <ul>
-    <li><a href="https://reactjs.org/">React.js</a></li>
+    <li><a href="https://expressjs.com](https://rubyonrails.org/">Ruby on Rails</a></li>
+  </ul>
+</details>
+
+<details>
+  <summary>Server</summary>
+  <ul>
+    <li><a href="https://expressjs.com](https://rubyonrails.org/">Ruby on Rails</a></li>
+  </ul>
+</details>
+
+<details>
+<summary>Database</summary>
+  <ul>
+    <li><a href="https://www.postgresql.org/">PostgreSQL</a></li>
   </ul>
 </details>
 
@@ -101,39 +116,19 @@ Clone this repository to your desired folder:
 
 sh <br>
 cd my-folder <br>
-git clone https://github.com/flemton/Final-Capstone-Frontend.git
+git clone https://github.com/flemton/Final-Capstone-Backend.git
 
 ### Install
 
 Install this project with:
 
-- npm install
+- bundle install
 
 ### Usage
 
 To run the project, execute the following command:
 
-npm start
-
-### Run tests <a name="tests"></a>
-To run the frontend tests, follow these steps:
-
-### Prerequisites
-
-Before running the tests, ensure you have the following installed:
-
-- Node.js: You need Node.js to execute the test scripts.
-- npm: npm is used to manage packages in your React project.
-
-### Running Tests
-
-Execute the following command to run the tests:
-
-```bash
-npm test
-```
-This command will run the test suites and provide you with the test results and coverage information.
-
+rails server
 
 <p align="right"><a href="#readme-top">back to top</a></p>
 
@@ -168,7 +163,7 @@ This command will run the test suites and provide you with the test results and 
 
 Contributions, issues, and feature requests are welcome!
 
-Feel free to check the [issues page](https://github.com/flemton/Final-Capstone-Frontend/issues).
+Feel free to check the [issues page](https://github.com/flemton/Final-Capstone-Backend/issues).
 
 <p align="right"\><a href="#readme-top"\>back to top</a></p>
 
