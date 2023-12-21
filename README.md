@@ -40,12 +40,6 @@
 
 ![ER Diagram](ERD.png)
 
-<p align="right"\><a href="#readme-top"\>back to top</a></p>
-
-## 💻 Link to Demo <a name="link-to-demo"></a>
-
-[Link to Demo]()
-
 ## 💻 Link to Back End <a name="link-to-back-end"></a>
 
 [Link to Back End API](https://github.com/flemton/Final-Capstone-Backend)
@@ -55,6 +49,8 @@
 ## 💻 link to Kanban board <a name="built-with"></a>
 
 [Link to Kanban Board](https://github.com/users/flemton/projects/3)
+
+[Link to Initial State of Kanban board](https://private-user-images.githubusercontent.com/36508436/292247513-47ed680d-137d-4975-add7-c39b10d71763.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTEiLCJleHAiOjE3MDMxNzI4NTQsIm5iZiI6MTcwMzE3MjU1NCwicGF0aCI6Ii8zNjUwODQzNi8yOTIyNDc1MTMtNDdlZDY4MGQtMTM3ZC00OTc1LWFkZDctYzM5YjEwZDcxNzYzLnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFJV05KWUFYNENTVkVINTNBJTJGMjAyMzEyMjElMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjMxMjIxVDE1MjkxNFomWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPTM3YzViOTlhZjBmOTZkMzBkZTgzYjYxMGJmYWU5YzMyYzJlZDc2ZGNlM2U2NzljODBmN2YyNDAyMTM5NGI5ODgmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0JmFjdG9yX2lkPTAma2V5X2lkPTAmcmVwb19pZD0wIn0.Hk_lx0jLFTORaOb60yENCwjnZBhP4tvmYljJmh1f1Bs)
 
 This project was completed by three Team members:
 
